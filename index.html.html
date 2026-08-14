@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Bulls Paradise</title>
 
+
   <style>
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
 
     :root {
       --gold: #d4af37;
@@ -19,361 +28,851 @@
       --black: #050505;
     }
 
+
     body {
       min-height: 100vh;
       overflow: hidden;
       font-family: Arial, Helvetica, sans-serif;
       color: #fff;
+
       background:
-        radial-gradient(circle at 50% 35%, rgba(212,175,55,0.16), transparent 32%),
-        radial-gradient(circle at 10% 90%, rgba(212,175,55,0.08), transparent 30%),
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(212,175,55,0.16),
+          transparent 32%
+        ),
+
+        radial-gradient(
+          circle at 10% 90%,
+          rgba(212,175,55,0.08),
+          transparent 30%
+        ),
+
         #050505;
+
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
+
     /* Premium background grid */
+
     body::before {
       content: "";
       position: fixed;
       inset: 0;
+
       background-image:
-        linear-gradient(rgba(212,175,55,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(212,175,55,0.035) 1px, transparent 1px);
+        linear-gradient(
+          rgba(212,175,55,0.035) 1px,
+          transparent 1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(212,175,55,0.035) 1px,
+          transparent 1px
+        );
+
       background-size: 55px 55px;
       pointer-events: none;
     }
 
+
     /* Ambient glow */
+
     .glow {
       position: fixed;
       width: 420px;
       height: 420px;
       border-radius: 50%;
+
       background: rgba(212,175,55,0.08);
+
       filter: blur(100px);
       pointer-events: none;
     }
+
 
     .glow.one {
       top: -180px;
       left: -150px;
     }
 
+
     .glow.two {
       right: -180px;
       bottom: -180px;
     }
 
+
     /* Floating particles */
+
     .particle {
       position: fixed;
+
       width: 3px;
       height: 3px;
+
       border-radius: 50%;
+
       background: var(--gold-light);
+
       opacity: 0.5;
-      animation: float 7s infinite ease-in-out;
+
+      animation:
+        float 7s infinite ease-in-out;
+
       pointer-events: none;
     }
 
-    .p1 { left: 10%; top: 25%; }
-    .p2 { left: 20%; top: 70%; animation-delay: 2s; }
-    .p3 { left: 80%; top: 20%; animation-delay: 1s; }
-    .p4 { left: 90%; top: 65%; animation-delay: 3s; }
-    .p5 { left: 70%; top: 80%; animation-delay: 4s; }
-    .p6 { left: 35%; top: 15%; animation-delay: 2.5s; }
+
+    .p1 {
+      left: 10%;
+      top: 25%;
+    }
+
+
+    .p2 {
+      left: 20%;
+      top: 70%;
+      animation-delay: 2s;
+    }
+
+
+    .p3 {
+      left: 80%;
+      top: 20%;
+      animation-delay: 1s;
+    }
+
+
+    .p4 {
+      left: 90%;
+      top: 65%;
+      animation-delay: 3s;
+    }
+
+
+    .p5 {
+      left: 70%;
+      top: 80%;
+      animation-delay: 4s;
+    }
+
+
+    .p6 {
+      left: 35%;
+      top: 15%;
+      animation-delay: 2.5s;
+    }
+
 
     @keyframes float {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0);
         opacity: 0.2;
       }
+
       50% {
         transform: translateY(-35px);
         opacity: 0.8;
       }
+
     }
+
+
+    /* Main container */
 
     .container {
       position: relative;
       z-index: 2;
+
       width: min(92%, 720px);
+
       padding: 55px 35px;
+
       text-align: center;
-      border: 1px solid rgba(212,175,55,0.22);
+
+      border:
+        1px solid rgba(212,175,55,0.22);
+
       border-radius: 28px;
-      background: rgba(10,10,10,0.72);
+
+      background:
+        rgba(10,10,10,0.72);
+
       backdrop-filter: blur(18px);
+
       box-shadow:
         0 30px 100px rgba(0,0,0,0.65),
-        inset 0 0 40px rgba(212,175,55,0.025);
+
+        inset 0 0 40px
+        rgba(212,175,55,0.025);
     }
+
+
+    /* Badge */
 
     .badge {
       display: inline-flex;
+
       align-items: center;
+
       gap: 9px;
+
       padding: 9px 18px;
+
       margin-bottom: 28px;
-      border: 1px solid rgba(212,175,55,0.35);
+
+      border:
+        1px solid rgba(212,175,55,0.35);
+
       border-radius: 50px;
-      background: rgba(212,175,55,0.06);
+
+      background:
+        rgba(212,175,55,0.06);
+
       color: var(--gold-light);
+
       font-size: 11px;
+
       font-weight: 700;
+
       letter-spacing: 2px;
+
       text-transform: uppercase;
     }
+
 
     .live-dot {
       width: 7px;
       height: 7px;
+
       border-radius: 50%;
+
       background: #4ade80;
-      box-shadow: 0 0 12px #4ade80;
-      animation: pulse 1.5s infinite;
+
+      box-shadow:
+        0 0 12px #4ade80;
+
+      animation:
+        pulse 1.5s infinite;
     }
 
+
     @keyframes pulse {
+
       50% {
         transform: scale(1.5);
         opacity: 0.5;
       }
+
     }
+
+
+    /* Bull */
 
     .bull {
       font-size: 105px;
+
       line-height: 1;
+
       margin-bottom: 20px;
+
       filter:
-        drop-shadow(0 0 18px rgba(212,175,55,0.5))
-        drop-shadow(0 0 45px rgba(212,175,55,0.18));
-      animation: bullMove 3s infinite ease-in-out;
+        drop-shadow(
+          0 0 18px
+          rgba(212,175,55,0.5)
+        )
+
+        drop-shadow(
+          0 0 45px
+          rgba(212,175,55,0.18)
+        );
+
+      animation:
+        bullMove 3s infinite ease-in-out;
     }
+
 
     @keyframes bullMove {
-      0%, 100% {
-        transform: translateY(0) scale(1);
+
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          scale(1);
       }
+
       50% {
-        transform: translateY(-10px) scale(1.04);
+        transform:
+          translateY(-10px)
+          scale(1.04);
       }
+
     }
+
+
+    /* Heading */
 
     h1 {
-      font-size: clamp(48px, 10vw, 88px);
+      font-size:
+        clamp(48px, 10vw, 88px);
+
       line-height: 0.95;
+
       font-weight: 900;
+
       letter-spacing: -4px;
+
       text-transform: uppercase;
-      background: linear-gradient(
-        120deg,
-        var(--gold-dark),
-        #fff0a6,
-        var(--gold),
-        #fff7c7,
-        #9b761c
-      );
+
+      background:
+        linear-gradient(
+          120deg,
+          var(--gold-dark),
+          #fff0a6,
+          var(--gold),
+          #fff7c7,
+          #9b761c
+        );
+
       background-size: 250% auto;
+
       -webkit-background-clip: text;
+
       background-clip: text;
+
       color: transparent;
-      animation: goldShine 5s linear infinite;
+
+      animation:
+        goldShine 5s linear infinite;
     }
 
+
     @keyframes goldShine {
+
       to {
-        background-position: 250% center;
+        background-position:
+          250% center;
       }
+
     }
+
+
+    /* Subtitle */
 
     .subtitle {
       max-width: 560px;
-      margin: 25px auto 35px;
+
+      margin:
+        25px auto 35px;
+
       color: #999;
+
       font-size: 17px;
+
       line-height: 1.7;
     }
+
 
     .subtitle strong {
       color: #e6c85c;
     }
 
+
+    /* Telegram button */
+
     .telegram-btn {
       position: relative;
+
       display: inline-flex;
+
       align-items: center;
+
       justify-content: center;
+
       gap: 13px;
+
       min-width: 300px;
+
       padding: 20px 38px;
+
       border-radius: 13px;
+
       text-decoration: none;
+
       color: #090909;
-      background: linear-gradient(
-        135deg,
-        #fff0a0,
-        #d4af37,
-        #a67c18
-      );
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff0a0,
+          #d4af37,
+          #a67c18
+        );
+
       font-size: 17px;
+
       font-weight: 900;
+
       letter-spacing: 1px;
+
       text-transform: uppercase;
+
       box-shadow:
-        0 0 25px rgba(212,175,55,0.25),
-        0 15px 40px rgba(0,0,0,0.5);
+        0 0 25px
+        rgba(212,175,55,0.25),
+
+        0 15px 40px
+        rgba(0,0,0,0.5);
+
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
+
 
     .telegram-btn::before {
       content: "";
+
       position: absolute;
+
       top: 0;
       left: -100%;
+
       width: 70%;
       height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.6),
-        transparent
-      );
-      transform: skewX(-20deg);
-      animation: buttonShine 3.5s infinite;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,0.6),
+          transparent
+        );
+
+      transform:
+        skewX(-20deg);
+
+      animation:
+        buttonShine 3.5s infinite;
     }
+
 
     @keyframes buttonShine {
-      0% { left: -100%; }
-      45%, 100% { left: 150%; }
+
+      0% {
+        left: -100%;
+      }
+
+      45%,
+      100% {
+        left: 150%;
+      }
+
     }
 
+
     .telegram-btn:hover {
-      transform: translateY(-5px) scale(1.03);
+      transform:
+        translateY(-5px)
+        scale(1.03);
+
       box-shadow:
-        0 0 45px rgba(212,175,55,0.45),
-        0 20px 50px rgba(0,0,0,0.6);
+        0 0 45px
+        rgba(212,175,55,0.45),
+
+        0 20px 50px
+        rgba(0,0,0,0.6);
     }
+
 
     .telegram-icon {
       width: 28px;
       height: 28px;
+
       border-radius: 50%;
+
       background: #111;
+
       color: #d4af37;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       font-size: 14px;
+
       z-index: 1;
     }
+
 
     .button-text {
       z-index: 1;
     }
 
+
+    /* Footer */
+
     .footer {
       margin-top: 38px;
+
       color: #444;
+
       font-size: 11px;
+
       letter-spacing: 1px;
     }
 
+
+    /* Mobile */
+
     @media (max-width: 600px) {
+
       .container {
         padding: 42px 22px;
       }
+
 
       .bull {
         font-size: 78px;
       }
 
+
       h1 {
         letter-spacing: -2px;
       }
+
 
       .subtitle {
         font-size: 15px;
       }
 
+
       .telegram-btn {
         width: 100%;
         min-width: 0;
       }
+
     }
+
   </style>
 
-  <!-- Meta Pixel Code -->
+
+  <!-- ==========================================
+       META PIXEL
+       ========================================== -->
+
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '4427228410877362');
-  fbq('track', 'PageView');
+
+    !function(f,b,e,v,n,t,s)
+
+    {
+
+      if(f.fbq)return;
+
+      n=f.fbq=function(){
+
+        n.callMethod ?
+
+        n.callMethod.apply(
+          n,
+          arguments
+        ) :
+
+        n.queue.push(arguments)
+
+      };
+
+      if(!f._fbq)f._fbq=n;
+
+      n.push=n;
+
+      n.loaded=!0;
+
+      n.version='2.0';
+
+      n.queue=[];
+
+      t=b.createElement(e);
+
+      t.async=!0;
+
+      t.src=v;
+
+      s=b.getElementsByTagName(e)[0];
+
+      s.parentNode.insertBefore(
+        t,
+        s
+      )
+
+    }(
+      window,
+      document,
+      'script',
+      'https://connect.facebook.net/en_US/fbevents.js'
+    );
+
+
+    /* YOUR META PIXEL ID */
+
+    fbq(
+      'init',
+      '4427228410877362'
+    );
+
+
+    /* Page view */
+
+    fbq(
+      'track',
+      'PageView'
+    );
+
   </script>
 
+
+  <!-- Meta Pixel noscript -->
+
   <noscript>
-    <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=4427228410877362&ev=PageView&noscript=1"
-         alt="">
+
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=4427228410877362&ev=PageView&noscript=1"
+      alt=""
+    >
+
   </noscript>
-  <!-- End Meta Pixel Code -->
+
 
 </head>
 
+
 <body>
 
+
+  <!-- Background -->
+
   <div class="glow one"></div>
+
   <div class="glow two"></div>
 
+
+  <!-- Particles -->
+
   <div class="particle p1"></div>
+
   <div class="particle p2"></div>
+
   <div class="particle p3"></div>
+
   <div class="particle p4"></div>
+
   <div class="particle p5"></div>
+
   <div class="particle p6"></div>
+
+
+  <!-- Main -->
 
   <main class="container">
 
+
     <div class="badge">
+
       <span class="live-dot"></span>
+
       Live Trading Community
+
     </div>
 
-    <div class="bull">🐂</div>
 
-    <h1>Bulls Paradise</h1>
+    <div class="bull">
+      🐂
+    </div>
+
+
+    <h1>
+      Bulls Paradise
+    </h1>
+
 
     <p class="subtitle">
-      Welcome to <strong>Bulls Paradise</strong> —
-      connect with our community and stay updated.
+
+      Welcome to
+      <strong>Bulls Paradise</strong>
+      —
+      connect with our community
+      and stay updated.
+
     </p>
 
-    <!-- Telegram invite button -->
+
+    <!-- ==========================================
+         TELEGRAM BUTTON
+         ========================================== -->
+
     <a
-      href="https://t.me/+5ROY3kPKB_ZhZThl"
-      target="_blank"
-      rel="noopener noreferrer"
+      href="/api/go"
       class="telegram-btn"
       aria-label="Join Bulls Paradise on Telegram"
+      id="telegramJoinButton"
     >
-      <span class="telegram-icon">➤</span>
-      <span class="button-text">Join Bulls Paradise</span>
+
+      <span class="telegram-icon">
+        ➤
+      </span>
+
+      <span class="button-text">
+        Join Bulls Paradise
+      </span>
+
     </a>
 
+
     <div class="footer">
-      © 2026 BULLS PARADISE • ALL RIGHTS RESERVED
+
+      © 2026 BULLS PARADISE
+      • ALL RIGHTS RESERVED
+
     </div>
+
 
   </main>
 
+
+  <!-- ==========================================
+       TRACKING SCRIPT
+       ========================================== -->
+
+  <script>
+
+    /*
+      When somebody clicks the Telegram button:
+
+      1. Record a Meta Lead event.
+      2. Copy UTM parameters from the landing page.
+      3. Send those parameters to /api/go.
+      4. /api/go creates the unique Telegram invite.
+    */
+
+
+    const telegramButton =
+      document.getElementById(
+        "telegramJoinButton"
+      );
+
+
+    telegramButton.addEventListener(
+      "click",
+      function(event) {
+
+        /*
+          Stop the normal link temporarily.
+        */
+
+        event.preventDefault();
+
+
+        /*
+          Record Meta Lead.
+        */
+
+        if (
+          typeof fbq === "function"
+        ) {
+
+          fbq(
+            "track",
+            "Lead"
+          );
+
+        }
+
+
+        /*
+          Read parameters from
+          the landing-page URL.
+        */
+
+        const currentUrl =
+          new URL(
+            window.location.href
+          );
+
+
+        /*
+          Create tracker URL.
+        */
+
+        const trackerUrl =
+          new URL(
+            "/api/go",
+            window.location.origin
+          );
+
+
+        /*
+          Copy supported UTM parameters.
+        */
+
+        const parameters = [
+          "fbclid",
+          "utm_source",
+          "utm_medium",
+          "utm_campaign",
+          "utm_content",
+          "utm_term"
+        ];
+
+
+        parameters.forEach(
+          function(parameter) {
+
+            const value =
+              currentUrl.searchParams.get(
+                parameter
+              );
+
+
+            if (value) {
+
+              trackerUrl.searchParams.set(
+                parameter,
+                value
+              );
+
+            }
+
+          }
+        );
+
+
+        /*
+          Continue to tracker.
+        */
+
+        window.location.href =
+          trackerUrl.toString();
+
+      }
+    );
+
+  </script>
+
+
 </body>
+
 </html>
